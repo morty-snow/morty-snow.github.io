@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>意大利6日情侣浪漫之旅</title>
+    <style>
+        :root {
+            --primary-color: #e76f51; /* 佛罗伦萨砖红色 */
+            --secondary-color: #2a9d8f; /* 地中海蓝绿色 */
+            --bg-color: #fffaf0;
+            --text-color: #264653;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Optima', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+        }
+
+        /* 幻灯片容器 */
+        .slide-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        /* 单个幻灯片样式 */
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 40px;
+            box-sizing: border-box;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 遮罩层 */
+        .slide::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.82);
+            z-index: 1;
+        }
+
+        /* 标题页特殊样式 */
+        .slide.title-page::before {
+            background: rgba(0, 0, 0, 0.35);
+        }
+        .slide.title-page {
+            color: white;
+            background-image: url('https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        h1 { font-size: 3.5rem; margin-bottom: 10px; text-align: center; color: var(--primary-color); letter-spacing: 2px; }
+        .slide.title-page h1 { color: white; text-shadow: 2px 2px 15px rgba(0,0,0,0.5); }
+        
+        h2 { font-size: 2.2rem; border-bottom: 3px solid var(--primary-color); display: inline-block; margin-bottom: 30px; color: var(--text-color); }
+        
+        .highlight-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            border-top: 5px solid var(--secondary-color);
+        }
+
+        .day-tag {
+            display: inline-block;
+            background: var(--text-color);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        ul { font-size: 1.1rem; line-height: 1.9; }
+        b { color: var(--primary-color); }
+
+        /* 导航按钮 */
+        .nav-buttons {
+            position: fixed;
+            bottom: 40px;
+            right: 60px;
+            z-index: 10;
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            padding: 12px 28px;
+            border: 1px solid var(--text-color);
+            background: white;
+            color: var(--text-color);
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: var(--text-color);
+            color: white;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 6px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            z-index: 100;
+            transition: width 0.4s;
+        }
+
+        .italy-flag {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            z-index: 2;
+            display: flex;
+            gap: 2px;
+        }
+        .flag-color { width: 15px; height: 30px; }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar" id="progressBar" style="width: 14.28%;"></div>
+
+    <div class="slide-container" id="slideContainer">
+        
+        <!-- Slide 1: Cover -->
+        <section class="slide title-page">
+            <div class="content">
+                <h1 style="font-size: 4.5rem;">意式浪漫 · 慢旅时光</h1>
+                <p style="text-align: center; font-size: 1.6rem; letter-spacing: 5px;">LA DOLCE VITA</p>
+                <p style="text-align: center; margin-top: 60px; font-weight: 300;">佛罗伦萨文艺复兴 Citywalk & 五渔村悬崖海景</p>
+                <p style="text-align: center; font-style: italic;">6天5晚 情侣深度定制方案</p>
+            </div>
+        </section>
+
+        <!-- Slide 2: Design Logic -->
+        <section class="slide" style="background-image: url('https://images.unsplash.com/photo-1491166617655-0723a0999cfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+            <div class="content">
+                <h2>行程设计灵感 Design</h2>
+                <div class="highlight-box">
+                    <div>
+                        <h3 style="color: var(--primary-color);">艺术与人文 (Citywalk)</h3>
+                        <p>放弃走马观花，在佛罗伦萨的石板路间漫步，从文艺复兴的巅峰到手工艺人的小巷。</p>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--secondary-color);">自然与海岸 (Nature)</h3>
+                        <p>前往世界遗产“五渔村”，在徒步古道上俯瞰利古里亚海，感受绝美海岛风情。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Day 1-2 -->
+        <section class="slide" style="background-image: url('https://images.unsplash.com/photo-1541123437802-96939219bb21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+            <div class="content">
+                <div class="day-tag">Day 1 - Day 2</div>
+                <h2>佛罗伦萨：露天博物馆的散步</h2>
+                <div class="highlight-box">
+                    <div>
+                        <p><b>D1：抵达与暮色</b></p>
+                        <ul>
+                            <li>入住老桥(Ponte Vecchio)附近酒店</li>
+                            <li><b>米开朗基罗广场</b>看日落（俯瞰全城最美时刻）</li>
+                            <li>享用正宗 T-Bone 丁骨牛排晚餐</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><b>D2：深度 Citywalk</b></p>
+                        <ul>
+                            <li>圣母百花大教堂 & 乔托钟楼</li>
+                            <li><b>乌菲兹美术馆</b>（沉浸艺术殿堂）</li>
+                            <li>漫步奥特拉诺区，寻找古老手工皮具店</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Day 3 -->
+        <section class="slide" style="background-image: url('https://images.unsplash.com/photo-1534445867742-43195f401b6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+            <div class="content">
+                <div class="day-tag">Day 3</div>
+                <h2>通往地中海：奔向蔚蓝</h2>
+                <div class="highlight-box" style="grid-template-columns: 1fr;">
+                    <p><b>上午：</b> 从佛罗伦萨乘坐火车前往拉斯佩齐亚（La Spezia），转入<b>五渔村（Cinque Terre）</b>。</p>
+                    <p><b>下午：</b> 入住<b>马纳罗拉（Manarola）</b>。这里是五渔村最出片的小镇，彩色的房子层叠在黑色的礁石上。</p>
+                    <p><b>浪漫时刻：</b> 在著名的“Nessun Dorma”酒吧露台，一边喝着 Spritz 酒，一边看着夕阳将镇子染成金黄色。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Day 4 -->
+        <section class="slide" style="background-image: url('https://images.unsplash.com/photo-1516939884455-1445c8652f83?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+            <div class="content">
+                <div class="day-tag">Day 4</div>
+                <h2>海边徒步：自然与色彩的碰撞</h2>
+                <div class="highlight-box">
+                    <div>
+                        <p><b>蓝道（Sentiero Azzurro）徒步</b></p>
+                        <p>选择<b>蒙特罗索到韦尔纳扎</b>段进行轻量徒步（约2小时）。穿越葡萄园和柠檬林，一路上伴随着绝美海景。</p>
+                    </div>
+                    <div>
+                        <p><b>跳岛游式游览</b></p>
+                        <p>乘坐轮渡（Ferry）从海上视角观察五座村庄。在<b>韦尔纳扎</b>的小港口喝一杯意式浓缩，看浪花拍岸。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Day 5 -->
+        <section class="slide" style="background-image: url('https://images.unsplash.com/photo-1527016021513-b09758b777bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+            <div class="content">
+                <div class="day-tag">Day 5</div>
+                <h2>诗人港湾：寻找隐世浪漫</h2>
+                <div class="highlight-box">
+                    <div>
+                        <p><b>韦内雷港 (Portovenere)</b></p>
+                        <p>这是被大众游客忽略的宝藏地点。拜里伦勋爵曾经游泳穿过的港湾，拥有壮丽的圣彼得教堂悬崖。</p>
+                    </div>
+                    <div>
+                        <p><b>情侣时刻</b></p>
+                        <p>租一艘带有船夫的小艇，在诗人湾进行私人巡游，在清澈的海水中浮潜，享受属于两个人的地中海阳光。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Tips -->
+        <section class="slide" style="background-image: url('https://images.unsplash.com/photo-1499678329028-101435549a4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+            <div class="content">
+                <h2>旅行锦囊 Tips</h2>
+                <div class="highlight-box">
+                    <div>
+                        <p><b>行在意大利</b></p>
+                        <ul>
+                            <li>城市间交通：下载 <b>Trenitalia</b> App 预订高铁票</li>
+                            <li>五渔村：购买 Cinque Terre Card 包含无限次火车及步道门票</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p><b>浪漫食单</b></p>
+                        <ul>
+                            <li>尝试 <b>Gelato</b>（意大利冰淇淋），每天一支</li>
+                            <li>晚餐通常 20:00 开始，建议提前预订靠窗位</li>
+                            <li>五渔村必尝：热那亚罗勒酱面（Pesto）</li>
+                        </ul>
+                    </div>
+                </div>
+                <h1 style="margin-top: 40px; font-size: 2.8rem; color: var(--secondary-color);">Ciao, Italia!</h1>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="italy-flag">
+        <div class="flag-color" style="background: #008C45;"></div>
+        <div class="flag-color" style="background: #F4F5F0;"></div>
+        <div class="flag-color" style="background: #CD212A;"></div>
+    </div>
+
+    <div class="nav-buttons">
+        <button onclick="prevSlide()">Precedente (上一页)</button>
+        <button onclick="nextSlide()">Prossimo (下一页)</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const container = document.getElementById('slideContainer');
+        const progressBar = document.getElementById('progressBar');
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            container.style.transform = `translateX(-${currentSlide * 100}%)`;
+            progressBar.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>
